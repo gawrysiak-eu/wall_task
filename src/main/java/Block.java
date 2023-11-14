@@ -1,4 +1,4 @@
 interface Block {
-    String getColor();
-    String getMaterial();
+    String color();
+    String material();
 }

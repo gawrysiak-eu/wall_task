@@ -32,11 +32,11 @@ public class Wall implements Structure {
     }
 
     private boolean findBlockByColorRecursive(Block block, String color) {
-        if (block.getColor().equals(color)) {
+        if (block.color().equals(color)) {
             return true;
         }
         if (block instanceof CompositeBlock compositeBlock) {
-            for (Block subBlock : compositeBlock.getBlocks()) {
+            for (Block subBlock : compositeBlock.blocks()) {
                 if (findBlockByColorRecursive(subBlock, color)) {
                     return true;
                 }
@@ -47,11 +47,11 @@ public class Wall implements Structure {
 
     private List<Block> findAllBlocksByMaterialRecursive(Block block, String material) {
         List<Block> foundBlocks = new ArrayList<>();
-        if (block.getMaterial().equals(material)) {
+        if (block.material().equals(material)) {
             foundBlocks.add(block);
         }
         if (block instanceof CompositeBlock compositeBlock) {
-            compositeBlock.getBlocks()
+            compositeBlock.blocks()
                     .stream()
                     .flatMap(subBlock -> findAllBlocksByMaterialRecursive(subBlock, material).stream())
                     .forEach(foundBlocks::add);
@@ -68,7 +68,8 @@ public class Wall implements Structure {
 
     private int countRecursive(Block block) {
         if (block instanceof CompositeBlock compositeBlock) {
-            return 1 + compositeBlock.getBlocks()
+            //if it is compositeBlock I return 1 plus the sum of the nested blocks. The task can be interpreted in various ways
+            return 1 + compositeBlock.blocks()
                     .stream()
                     .mapToInt(this::countRecursive)
                     .sum();
