@@ -18,7 +18,7 @@ public class WallTestSuite {
         Optional<Block> pinkTest = wall.findBlockByColor("Pink");
         // then
         assertTrue(grayTest.isPresent());
-        assertEquals("Gray", grayTest.get().getColor());
+        assertEquals("Gray", grayTest.get().color());
         assertFalse(pinkTest.isPresent());
     }
 
