@@ -68,6 +68,7 @@ public class Wall implements Structure {
 
     private int countRecursive(Block block) {
         if (block instanceof CompositeBlock compositeBlock) {
+            //if it is compositeBlock I return 1 plus the sum of the nested blocks. The task can be interpreted in various ways
             return 1 + compositeBlock.blocks()
                     .stream()
                     .mapToInt(this::countRecursive)
